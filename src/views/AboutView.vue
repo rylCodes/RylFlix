@@ -1,7 +1,7 @@
 <template>
-  <div class="container max-w-6xl mx-auto min-h-svh">
-    <div class="flex flex-col gap-2 w-full">
-      <h3 class="font-semibold text-2xl text-gray-100 mt-12">ABOUT RYLFLIX</h3>
+  <div class="container max-w-6xl mx-auto min-h-svh my-12">
+    <div class="flex flex-col gap-2 w-full px-6">
+      <h3 class="font-semibold text-2xl text-gray-100">ABOUT RYLFLIX</h3>
       <p>
         Welcome to RylFlix, your ultimate destination for online movie
         streaming!
