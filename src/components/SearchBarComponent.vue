@@ -10,7 +10,7 @@
       "
     >
       <span
-        class="bg-purple-500 rounded-lg px-2 py-1 text-xs font-semibold text-gray-950"
+        class="bg-myViolet rounded-lg px-2 py-1 text-xs font-semibold text-gray-950"
       >
         <i class="fa-solid fa-filter"></i> Filter
       </span>
@@ -88,7 +88,7 @@
         <button
           type="button"
           @click="onSubmit()"
-          class="w-full rounded-xl bg-purple-500 text-gray-900 px-1.5 py-3 text-center text-sm font-semibold hover:bg-purple-400 transition-all duration-300"
+          class="w-full rounded-xl bg-myViolet text-gray-900 px-1.5 py-3 text-center text-sm font-semibold hover:bg-[rgb(116 71 168)] transition-all duration-300"
         >
           View All Results <i class="mdi mdi-arrow-top-right"></i>
         </button>

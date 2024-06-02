@@ -7,7 +7,7 @@ html {
   font-optical-sizing: auto;
   font-style: normal;
 
-  scrollbar-color: rgb(168, 85, 247) #0000;
+  scrollbar-color: rgb(146, 97, 203) #0000;
 }
 
 .vignette {
@@ -32,11 +32,11 @@ html {
   background: radial-gradient(
     ellipse at center,
     rgba(0, 0, 0, 0),
-    rgba(147, 51, 234, 1)
+    rgb(116, 71, 168, 1)
   );
   pointer-events: none;
   border-radius: 0.5rem;
-  outline: 1.5px solid rgb(168, 85, 247);
+  outline: 1.5px solid rgb(146, 97, 203);
   opacity: 0;
   transition: opacity 0.3s;
 }

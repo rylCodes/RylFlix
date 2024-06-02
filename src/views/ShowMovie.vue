@@ -199,13 +199,13 @@
         class="w-full lg:w-72 border border-gray-700 rounded-2xl overflow-hidden"
       >
         <h5
-          class="text-center font-semibold hover:bg-purple-500 hover:text-gray-100 px-4 py-2 rounded-t-xl transition-colors duration-300"
+          class="text-center font-semibold hover:bg-myViolet hover:text-gray-100 px-4 py-2 rounded-t-xl transition-colors duration-300"
         >
           Movie Files
         </h5>
         <ul class="bg-gray-900">
           <li
-            class="cursor-pointer py-2 px-4 whitespace-nowrap overflow-x-clip hover:bg-gray-800 border-l border-transparent hover:border-purple-500 hover:text-gray-100 transition-all duration-300"
+            class="cursor-pointer py-2 px-4 whitespace-nowrap overflow-x-clip hover:bg-gray-800 border-l border-transparent hover:border-myViolet hover:text-gray-100 transition-all duration-300"
             @click="onSelectMovie()"
           >
             {{ tmdbMovie.title || omdbMovie.Title }}

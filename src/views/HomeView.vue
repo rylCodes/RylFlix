@@ -8,9 +8,9 @@
           <button
             data-featured="featuredMovies"
             ref="featuredMovies"
-            class="px-2.5 py-1 rounded-md bg-gray-800 hover:bg-purple-500 hover:text-gray-100 transition-colors duration-300"
+            class="px-2.5 py-1 rounded-md bg-gray-800 hover:bg-myViolet hover:text-gray-100 transition-colors duration-300"
             :class="{
-              'bg-purple-500 text-gray-100':
+              'bg-myViolet text-gray-100':
                 selectedFeaturedType === 'featuredMovies',
             }"
             @click="onSelectFeaturedType($event)"
@@ -20,9 +20,9 @@
           <button
             data-featured="featuredTVShows"
             ref="featuredTVShows"
-            class="px-2.5 py-1 rounded-md bg-gray-800 hover:bg-purple-500 hover:text-gray-100 transition-colors duration-300"
+            class="px-2.5 py-1 rounded-md bg-gray-800 hover:bg-myViolet hover:text-gray-100 transition-colors duration-300"
             :class="{
-              'bg-purple-500 text-gray-100':
+              'bg-myViolet text-gray-100':
                 selectedFeaturedType === 'featuredTVShows',
             }"
             @click="onSelectFeaturedType($event)"

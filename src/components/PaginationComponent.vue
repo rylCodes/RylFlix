@@ -2,7 +2,7 @@
   <div class="flex items-center w-fit mt-12 mx-auto text-sm">
     <button
       v-if="currentPage > 1"
-      class="px-4 py-2 border border-gray-700 rounded-l-xl enabled:hover:bg-purple-500 enabled:hover:text-gray-100 transition-colors duration-300 disabled:opacity-50"
+      class="px-4 py-2 border border-gray-700 rounded-l-xl enabled:hover:bg-myViolet enabled:hover:text-gray-100 transition-colors duration-300 disabled:opacity-50"
       type="button"
       @click="onFirstPage"
     >
@@ -10,7 +10,7 @@
     </button>
     <button
       :disabled="currentPage === 1"
-      class="px-4 py-2 border border-gray-700 enabled:hover:bg-purple-500 enabled:hover:text-gray-100 transition-colors duration-300 disabled:opacity-50"
+      class="px-4 py-2 border border-gray-700 enabled:hover:bg-myViolet enabled:hover:text-gray-100 transition-colors duration-300 disabled:opacity-50"
       :class="{ 'rounded-l-xl': currentPage <= 1 }"
       type="button"
       @click="onPrevPage"
@@ -22,7 +22,7 @@
     </span>
     <button
       :disabled="currentPage === totalPages"
-      class="px-4 py-2 border border-gray-700 enabled:hover:bg-purple-500 enabled:hover:text-gray-100 transition-colors duration-300 disabled:opacity-50"
+      class="px-4 py-2 border border-gray-700 enabled:hover:bg-myViolet enabled:hover:text-gray-100 transition-colors duration-300 disabled:opacity-50"
       :class="{ 'rounded-r-xl': currentPage === totalPages }"
       type="button"
       @click="onNextPage"
@@ -31,7 +31,7 @@
     </button>
     <button
       v-if="currentPage !== totalPages"
-      class="px-4 py-2 border border-gray-700 rounded-r-xl hover:bg-purple-500 hover:text-gray-100 transition-colors duration-300"
+      class="px-4 py-2 border border-gray-700 rounded-r-xl hover:bg-myViolet hover:text-gray-100 transition-colors duration-300"
       type="button"
       @click="onLastPage"
     >
