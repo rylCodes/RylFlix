@@ -20,7 +20,7 @@ export default function useFilterAll() {
     isFilterFetching.value = true;
     try {
       const response = await axios.get(
-        `http://www.omdbapi.com/?apikey=f6259449&s=${s}&type=${type}&y=${y}&page=${page}`
+        `https://www.omdbapi.com/?apikey=f6259449&s=${s}&type=${type}&y=${y}&page=${page}`
       );
       const results = response.data.Search;
       searchResults.value = results || [];

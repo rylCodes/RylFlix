@@ -213,7 +213,7 @@
           <button
             type="button"
             @click="toggleSeasons()"
-            class="flex items-center justify-center gap-1 w-full px-4 py-2 hover:bg-purple-400 hover:text-gray-100 rounded-t-xl transition-colors duration-300 font-semibold"
+            class="flex items-center justify-center gap-1 w-full px-4 py-2 hover:bg-purple-500 hover:text-gray-100 rounded-t-xl transition-colors duration-300 font-semibold"
           >
             <i class="mdi mdi-view-split-horizontal"></i>
             <span>{{
@@ -230,9 +230,9 @@
             <li
               v-for="season in tmdbTVShow.seasons"
               :key="season.id"
-              class="cursor-pointer py-1 hover:bg-purple-400 hover:text-gray-100"
+              class="cursor-pointer py-1 hover:bg-purple-500 hover:text-gray-100"
               :class="{
-                'bg-purple-400 text-gray-100':
+                'bg-purple-500 text-gray-100':
                   seasonNumber === season.season_number,
               }"
               @click="onSelectSeason(season)"
@@ -249,7 +249,7 @@
             class="odd:bg-gray-900"
           >
             <li
-              class="cursor-pointer py-2 px-4 whitespace-nowrap overflow-x-clip hover:bg-gray-800 border-l border-transparent hover:border-purple-400 hover:text-gray-100 transition-all duration-300 text-sm"
+              class="cursor-pointer py-2 px-4 whitespace-nowrap overflow-x-clip hover:bg-gray-800 border-l border-transparent hover:border-purple-500 hover:text-gray-100 transition-all duration-300 text-sm"
               :class="{
                 'bg-gray-700 text-gray-100 hover:bg-gray-700':
                   episode.episode_number === episodeNumber,

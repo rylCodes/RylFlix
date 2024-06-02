@@ -1,7 +1,7 @@
 <template>
   <div
     class="flex items-center gap-1 cursor-pointer px-2"
-    :class="props.isSelected && 'text-purple-400'"
+    :class="props.isSelected && 'text-purple-500'"
   >
     <i v-if="props.isSelected" class="mdi mdi-plus-circle-outline"></i>
     <i
