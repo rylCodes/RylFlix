@@ -10,12 +10,12 @@
           >
             STREAM MOVIES AND TV SHOWS ONLINE AT NO COST
           </h3>
-          <p class="mt-6">
+          <p class="mt-6 text-center">
             Discover the best place for free online movie streaming. Enjoy
             high-quality movies without any cost.
           </p>
           <router-link
-            class="block w-full rounded-lg p-2 bg-myViolet text-gray-900 text-sm text-center font-semibold mt-6 hover:bg-[rgb(116,71,168)] transition-colors duration-300"
+            class="block w-full rounded-lg p-2 bg-myViolet text-gray-100 text-sm text-center font-semibold mt-6 hover:bg-[#6754ab] transition-colors duration-300"
             to="/home"
           >
             Watch Free Movies & TV Shows

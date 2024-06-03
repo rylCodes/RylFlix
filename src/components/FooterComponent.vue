@@ -32,7 +32,7 @@
         <router-link to="/">
           <div class="flex justify-end items-center gap-1">
             <img class="w-6 h-auto" src="../assets/logo.png" alt="" />
-            <h1 class="text-2xl text-gray-100 font-extrabold">
+            <h1 class="text-2xl text-gray-100 font-extrabold drop-shadow-lg">
               <span class="text-myViolet">Ryl</span>Flix
             </h1>
           </div>
@@ -44,7 +44,7 @@
         </p>
       </div>
     </div>
-    <div class="w-fit mx-auto mt-4">
+    <div class="w-fit mx-auto mt-4 text-center">
       <small
         >This website does not host any files on our server; we simply provide
         links to media stored on third-party services.</small

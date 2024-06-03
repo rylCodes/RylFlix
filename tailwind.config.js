@@ -8,7 +8,7 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        myViolet: "#9261cb",
+        myViolet: "#554490",
       },
     },
   },

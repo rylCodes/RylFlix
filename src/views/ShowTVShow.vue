@@ -1,6 +1,7 @@
 <template>
   <div class="w-full mb-16">
     <div
+      :key="backdropKey"
       class="relative w-full h-full aspect-video bg-cover bg-center"
       id="tvshow-container"
       :style="
@@ -18,7 +19,6 @@
         @class="isImageLoaded ? 'opacity-100' : 'opacity-0'"
         class="absolute top-0 left-0 w-full h-auto"
         @load="onImageLoad()"
-        :key="backdropKey"
         :src="'https://image.tmdb.org/t/p/w1280' + tmdbTVShow.backdrop_path"
         loading="lazy"
         alt=""
@@ -33,16 +33,18 @@
         src="../assets/play-button.svg"
         alt="play-button"
       />
-      <iframe
-        :key="videoKey"
-        v-if="isVideoPlaying"
-        class="w-full aspect-video"
-        :src="`https://vidsrc.to/embed/tv/${
-          tmdbTVShow.id || omdbTVShow.imdbID
-        }/${seasonNumber}/${episodeNumber}`"
-        frameborder="0"
-        allowfullscreen
-      ></iframe>
+      <div class="w-full h-auto aspect-video">
+        <iframe
+          :key="videoKey"
+          v-if="isVideoPlaying"
+          class="w-full h-auto aspect-video"
+          :src="`https://vidsrc.to/embed/tv/${
+            tmdbTVShow.id || omdbTVShow.imdbID
+          }/${seasonNumber}/${episodeNumber}`"
+          frameborder="0"
+          allowfullscreen
+        ></iframe>
+      </div>
     </div>
     <div
       class="flex flex-col-reverse gap-8 w-full p-4 mt-6 lg:flex-row lg:gap-4"
@@ -54,6 +56,7 @@
           class="absolute top-0 right-1/2 translate-x-1/2 lg:right-0 lg:translate-x-0"
         >
           <StarRatingComponent
+            v-if="tmdbTVShow.vote_average || omdbTVShow.imdbRating !== 'N/A'"
             :rating="
               tmdbTVShow.vote_average
                 ? tmdbTVShow.vote_average
@@ -66,7 +69,11 @@
             "
           />
         </div>
-        <div class="flex gap-4">
+
+        <!-- Skeleton TV Show Details -->
+        <DetailSkeleton v-if="!isFetching" />
+
+        <div class="flex gap-4" v-if="isFetching">
           <div
             class="absolute w-full h-fit -z-10 opacity-15 aspect-[2/3] lg:static lg:w-56 lg:h-fit lg:opacity-100 bg-contain"
             :style="{
@@ -82,7 +89,8 @@
               class="aspect-[2/3] w-full h-auto rounded-xl"
               :src="
                 'https://image.tmdb.org/t/p/w300' +
-                (seasonInfo.poster_path || tmdbTVShow.poster_path)
+                  (seasonInfo.poster_path || tmdbTVShow.poster_path) ||
+                omdbTVShow.Poster
               "
               loading="lazy"
               @load="onImageLoad()"
@@ -94,7 +102,7 @@
           >
             <h4
               v-if="tmdbTVShow.name"
-              class="text-2xl text-slate-100 font-semibold sm:text-3xl"
+              class="text-2xl text-slate-100 font-semibold xl:max-w-lg lg:max-w-xs sm:text-3xl"
             >
               {{ tmdbTVShow.name }}
             </h4>
@@ -105,20 +113,37 @@
                 >{{ omdbTVShow.Rated }}</span
               >
               <div class="flex items-center">
-                <span class="material-symbols-outlined">stars</span>
-                <span v-if="tmdbTVShow.vote_average">
+                <span
+                  v-if="
+                    tmdbTVShow.vote_average || omdbTVShow.imdbRating !== 'N/A'
+                  "
+                  class="material-symbols-outlined"
+                  >stars</span
+                >
+                <span
+                  v-if="
+                    tmdbTVShow.vote_average || omdbTVShow.imdbRating !== 'N/A'
+                  "
+                >
                   {{
                     tmdbTVShow.vote_average
                       ? toOneDecimal(tmdbTVShow.vote_average)
-                      : ""
+                      : omdbTVShow.imdbRating
                   }}</span
                 >
               </div>
-              <span v-if="tmdbTVShow.episode_run_time">{{
-                tmdbTVShow.episode_run_time
-                  ? tmdbTVShow.episode_run_time + "min"
-                  : ""
-              }}</span>
+              <span
+                v-if="
+                  (tmdbTVShow.episode_run_time &&
+                    tmdbTVShow.episode_run_time.length > 0) ||
+                  omdbTVShow.Runtime
+                "
+                >{{
+                  tmdbTVShow.episode_run_time.length !== 0
+                    ? tmdbTVShow.episode_run_time[0] + " min"
+                    : omdbTVShow.Runtime
+                }}</span
+              >
             </div>
             <p v-if="tmdbTVShow.overview">{{ tmdbTVShow.overview }}</p>
             <div>
@@ -143,12 +168,12 @@
                 }}</span>
               </div>
               <div
-                v-if="tmdbTVShow.last_air_date"
+                v-if="tmdbTVShow.first_air_date"
                 class="flex items-center w-full capitalize"
               >
                 <span class="w-24">Release:</span>
                 <span class="flex-1 text-gray-300">{{
-                  tmdbTVShow.last_air_date
+                  tmdbTVShow.first_air_date
                     ? formatDateToLong(tmdbTVShow.first_air_date)
                     : ""
                 }}</span>
@@ -186,9 +211,10 @@
               >
                 <span class="w-24">Production:</span>
                 <span class="flex-1 text-gray-300">{{
-                  tmdbTVShow.production_companies
-                    ? arrayToString(tmdbTVShow.production_companies)
-                    : ""
+                  omdbTVShow.Production !== "N/A"
+                    ? omdbTVShow.Production
+                    : tmdbTVShow.production_companies &&
+                      arrayToString(tmdbTVShow.production_companies)
                 }}</span>
               </div>
               <div
@@ -241,7 +267,7 @@
             </li>
           </ol>
         </div>
-        <div class="max-h-96 overflow-y-auto">
+        <div class="max-h-96 min-h-72 overflow-y-auto">
           <ol
             v-for="episode in seasonDetails.episodes &&
             filterByTodayLatest(seasonDetails.episodes)"
@@ -356,6 +382,7 @@ import {
 } from "../utils/textFormatter";
 import LoaderModalComponent from "@/components/LoaderModalComponent.vue";
 import StarRatingComponent from "../components/StarRatingComponent.vue";
+import DetailSkeleton from "../components/DetailSkeleton.vue";
 
 const {
   tmdbTVShow,
@@ -370,6 +397,7 @@ const {
 } = useTVShows();
 
 const route = useRoute();
+
 const tvshowID = ref(route.params.id);
 const backdropKey = ref(Date.now());
 const posterKey = ref(Date.now());
@@ -449,6 +477,8 @@ watch(
     showTVShow(newTVShowID);
     showSeasonDetails(newTVShowID, 1);
     showEpisodeDetails(newTVShowID, 1);
+    seasonNumber.value = 1;
+    episodeNumber.value = 1;
   }
 );
 
@@ -469,4 +499,5 @@ watch(seasonDetails, (newSeasonDetails) => {
 });
 
 // defineOptions({ inheritAttrs: false });
+// console.log(omdbTVShow, tmdbTVShow);
 </script>

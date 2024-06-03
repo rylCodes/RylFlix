@@ -1,5 +1,5 @@
 <template>
-  <div class="flex items-center w-fit mt-12 mx-auto text-sm">
+  <div class="flex items-center w-fit mt-12 mx-auto text-xs sm:text-sm">
     <button
       v-if="currentPage > 1"
       class="px-4 py-2 border border-gray-700 rounded-l-xl enabled:hover:bg-myViolet enabled:hover:text-gray-100 transition-colors duration-300 disabled:opacity-50"

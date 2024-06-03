@@ -4,8 +4,8 @@
       <!-- Logo -->
       <router-link to="/">
         <div class="flex items-center px-1 gap-1">
-          <img class="w-5 h-auto sm:w-6" src="../assets/logo.png" alt="" />
-          <h1 class="text-xl text-gray-100 font-extrabold sm:text-2xl">
+          <img class="w-6 h-auto" src="../assets/logo.png" alt="" />
+          <h1 class="text-2xl text-gray-100 font-extrabold drop-shadow-lg">
             <span class="text-myViolet">Ryl</span>Flix
           </h1>
         </div>

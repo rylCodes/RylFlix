@@ -1,6 +1,7 @@
 <template>
   <div class="w-full mb-16">
     <div
+      :key="backdropKey"
       class="relative w-full h-full aspect-video bg-contain"
       id="movie-container"
       :style="
@@ -33,16 +34,18 @@
         src="../assets/play-button.svg"
         alt=""
       />
-      <iframe
-        v-if="isVideoPlaying"
-        class="w-full aspect-video"
-        :src="
-          'https://vidsrc.to/embed/movie/' +
-          (omdbMovie.imdbID ? omdbMovie.imdbID : tmdbMovie.id)
-        "
-        frameborder="0"
-        allowfullscreen
-      ></iframe>
+      <div class="w-full h-auto aspect-video">
+        <iframe
+          v-if="isVideoPlaying"
+          class="w-full h-auto aspect-video"
+          :src="
+            'https://vidsrc.to/embed/movie/' +
+            (omdbMovie.imdbID ? omdbMovie.imdbID : tmdbMovie.id)
+          "
+          frameborder="0"
+          allowfullscreen
+        ></iframe>
+      </div>
     </div>
     <div
       class="flex flex-col-reverse gap-8 w-full p-4 mt-6 lg:flex-row lg:gap-4"
@@ -54,6 +57,7 @@
           class="absolute top-0 right-1/2 translate-x-1/2 lg:right-0 lg:translate-x-0"
         >
           <StarRatingComponent
+            v-if="tmdbMovie.vote_average || omdbMovie.imdbRating !== 'N/A'"
             :rating="
               tmdbMovie.vote_average
                 ? tmdbMovie.vote_average
@@ -64,7 +68,11 @@
             "
           />
         </div>
-        <div class="flex gap-4">
+
+        <!-- Skeleton Movie Details -->
+        <DetailSkeletonVue v-if="isFetching" />
+
+        <div class="flex gap-4" v-if="!isFetching">
           <div
             class="absolute w-full h-fit -z-10 opacity-15 aspect-[2/3] lg:static lg:w-56 lg:h-fit lg:opacity-100 bg-contain"
             :style="{
@@ -86,7 +94,10 @@
           <div
             class="flex-1 flex flex-col w-full gap-2 text-sm px-4 py-6 mt-16 lg:mt-0 md:mt-56"
           >
-            <h4 class="text-2xl text-slate-100 font-semibold sm:text-3xl">
+            <h4
+              v-if="omdbMovie.Title || tmdbMovie.title"
+              class="text-2xl text-slate-100 max-w-full font-semibold xl:max-w-lg lg:max-w-xs sm:text-3xl"
+            >
               {{ omdbMovie.Title || tmdbMovie.title }}
             </h4>
             <div class="flex items-center gap-2 text-base">
@@ -96,14 +107,20 @@
                 >{{ omdbMovie.Rated }}</span
               >
               <div class="flex items-center">
-                <span class="material-symbols-outlined">stars</span>
+                <span
+                  v-if="
+                    tmdbMovie.vote_average || omdbMovie.imdbRating !== 'N/A'
+                  "
+                  class="material-symbols-outlined"
+                  >stars</span
+                >
                 <span>{{
                   (tmdbMovie.vote_average &&
                     toOneDecimal(tmdbMovie.vote_average)) ||
                   (omdbMovie.imdbRating && toOneDecimal(omdbMovie.imdbRating))
                 }}</span>
               </div>
-              <span>{{ tmdbMovie.runtime + "min" || omdbMovie.Runtime }}</span>
+              <span>{{ tmdbMovie.runtime + " min" || omdbMovie.Runtime }}</span>
             </div>
             <p>{{ tmdbMovie.overview }}</p>
             <div>
@@ -117,7 +134,7 @@
                 <span class="w-24">Country:</span>
                 <span class="flex-1 text-gray-300">
                   {{
-                    omdbMovie.Country ||
+                    omdbMovie.Country !== "N/A" ||
                     (tmdbMovie.origin_country && tmdbMovie.origin_country[0])
                   }}
                 </span>
@@ -156,11 +173,12 @@
                 <span class="w-24">Production:</span>
                 <span class="flex-1 text-gray-300">
                   {{
-                    omdbMovie.Production ||
-                    (tmdbMovie.production_companies &&
-                      tmdbMovie.production_companies
-                        .map((production) => production.name)
-                        .join(", "))
+                    omdbMovie.Production !== "N/A"
+                      ? omdbMovie.Production
+                      : tmdbMovie.production_companies &&
+                        tmdbMovie.production_companies
+                          .map((production) => production.name)
+                          .join(", ")
                   }}
                 </span>
               </div>
@@ -291,6 +309,7 @@ import useMovies from "../composables/movies";
 
 import LoaderModalComponent from "../components/LoaderModalComponent.vue";
 import StarRatingComponent from "../components/StarRatingComponent.vue";
+import DetailSkeletonVue from "@/components/DetailSkeleton.vue";
 
 import { formatDateToLong } from "../utils/dateFormatter";
 import { toKebabCase, toOneDecimal } from "../utils/textFormatter";
@@ -305,7 +324,9 @@ const {
 } = useMovies();
 
 const route = useRoute();
+
 const movieID = ref(route.params.id);
+const backdropKey = ref(Date.now());
 const imageKey = ref(Date.now());
 const isImageLoaded = ref(false);
 const isVideoPlaying = ref(false);
@@ -325,10 +346,11 @@ watch(
   () => route.params.id,
   (newMovieID) => {
     isVideoPlaying.value = false;
+    backdropKey.value = Date.now();
+    imageKey.value = Date.now();
     movieID.value = newMovieID;
     showMovie(newMovieID);
     showRecommendedMovies(newMovieID);
-    imageKey.value = Date.now();
   }
 );
 

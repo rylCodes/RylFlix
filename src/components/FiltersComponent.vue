@@ -76,7 +76,7 @@
         @click="onSubmit()"
         :disabled="props.modelValue.trim() === ''"
         type="button"
-        class="flex-1 text-center rounded-lg px-4 py-1 bg-myViolet enabled:hover:bg-[rgb(116,71,168)] transition-colors duration-300 text-gray-900 disabled:opacity-50"
+        class="flex-1 text-center rounded-lg px-4 py-1 bg-myViolet enabled:hover:bg-[#6754ab] transition-colors duration-300 text-gray-200 disabled:opacity-50"
       >
         <span class="text-sm font-semibold"
           ><i class="mdi mdi-atom-variant"></i> Filter</span
