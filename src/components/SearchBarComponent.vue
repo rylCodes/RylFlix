@@ -3,20 +3,19 @@
     <!-- Search Bar -->
     <div
       class="flex items-center w-full max-w-[52rem] mx-auto rounded-t-2xl bg-gray-900 transition-all duration-500 overflow-hidden"
-      :class="
-        props.isSearchBarOpen || $route.fullPath === '/'
-          ? 'h-14 px-4 py-3'
-          : 'h-0 px-0 py-0'
-      "
+      :class="props.isSearchBarOpen || $route.fullPath === '/' ? 'h-14' : 'h-0'"
     >
       <span
-        class="bg-myViolet rounded-lg px-2 py-1 text-xs font-medium text-gray-300"
+        class="bg-violet-500 ml-4 my-3 rounded-lg px-2 py-1 text-xs font-medium text-gray-900"
       >
         <i class="fa-solid fa-filter"></i> Filter
       </span>
 
       <!-- Form -->
-      <form class="flex-1 flex items-center" @submit.prevent="onSubmit()">
+      <form
+        class="flex-1 flex items-center mr-4 my-3"
+        @submit.prevent="onSubmit()"
+      >
         <input
           @input="onTypingKeyword"
           v-model="searchInput"
@@ -88,7 +87,7 @@
         <button
           type="button"
           @click="onSubmit()"
-          class="w-full rounded-xl bg-myViolet text-gray-900 px-1.5 py-3 text-center text-sm font-semibold hover:bg-[rgb(116,71,168)] transition-all duration-300"
+          class="w-full rounded-xl bg-violet-500 text-gray-900 px-1.5 py-3 text-center text-sm font-semibold hover:bg-[rgb(116,71,168)] transition-all duration-300"
         >
           View All Results <i class="mdi mdi-arrow-top-right"></i>
         </button>

@@ -71,9 +71,9 @@
         </div>
 
         <!-- Skeleton TV Show Details -->
-        <DetailSkeleton v-if="!isFetching" />
+        <DetailSkeleton v-if="isFetching" />
 
-        <div class="flex gap-4" v-if="isFetching">
+        <div class="flex gap-4" v-if="!isFetching">
           <div
             class="absolute w-full h-fit -z-10 opacity-15 aspect-[2/3] lg:static lg:w-56 lg:h-fit lg:opacity-100 bg-contain"
             :style="{
@@ -239,7 +239,7 @@
           <button
             type="button"
             @click="toggleSeasons()"
-            class="flex items-center justify-center gap-1 w-full px-4 py-2 hover:bg-myViolet hover:text-gray-100 rounded-t-xl transition-colors duration-300 font-semibold"
+            class="flex items-center justify-center gap-1 w-full px-4 py-2 hover:bg-violet-500 hover:text-gray-100 rounded-t-xl transition-colors duration-300 font-semibold"
           >
             <i class="mdi mdi-view-split-horizontal"></i>
             <span>{{
@@ -256,9 +256,9 @@
             <li
               v-for="season in tmdbTVShow.seasons"
               :key="season.id"
-              class="cursor-pointer py-1 hover:bg-myViolet hover:text-gray-100"
+              class="cursor-pointer py-1 hover:bg-violet-500 hover:text-gray-100"
               :class="{
-                'bg-myViolet text-gray-100':
+                'bg-violet-500 text-gray-100':
                   seasonNumber === season.season_number,
               }"
               @click="onSelectSeason(season)"
@@ -275,7 +275,7 @@
             class="odd:bg-gray-900"
           >
             <li
-              class="cursor-pointer py-2 px-4 whitespace-nowrap overflow-x-clip hover:bg-gray-800 border-l border-transparent hover:border-myViolet hover:text-gray-100 transition-all duration-300 text-sm"
+              class="cursor-pointer py-2 px-4 whitespace-nowrap overflow-x-clip hover:bg-gray-800 border-l border-transparent hover:border-violet-500 hover:text-gray-100 transition-all duration-300 text-sm"
               :class="{
                 'bg-gray-700 text-gray-100 hover:bg-gray-700':
                   episode.episode_number === episodeNumber,

@@ -12,8 +12,8 @@
         <button
           type="button"
           @click="toggleFilterType()"
-          class="flex items-center w-full h-full justify-between rounded-lg px-4 py-1 bg-gray-800 hover:bg-myViolet hover:text-gray-900 transition-colors duration-300 focus:outline-none"
-          :class="isTypeOptionOpen && 'bg-myViolet text-gray-900'"
+          class="flex items-center w-full h-full justify-between rounded-lg px-4 py-1 bg-gray-800 hover:bg-violet-500 hover:text-gray-900 transition-colors duration-300 focus:outline-none"
+          :class="isTypeOptionOpen && 'bg-violet-500 text-gray-900'"
         >
           <span class="text-sm font-semibold">{{ selectedType }}</span>
           <i
@@ -39,35 +39,35 @@
       </div>
       <!-- <button
         type="button"
-        class="flex items-center w-full h-full justify-between rounded-lg px-4 py-1 bg-gray-800 hover:bg-myViolet hover:text-gray-900 transition-colors duration-300 focus:outline-none"
+        class="flex items-center w-full h-full justify-between rounded-lg px-4 py-1 bg-gray-800 hover:bg-violet-500 hover:text-gray-900 transition-colors duration-300 focus:outline-none"
       >
         <span class="text-sm font-semibold">Genre</span>
         <i class="fa-solid fa-circle-chevron-down text-xs"></i>
       </button>
       <button
         type="button"
-        class="flex items-center w-full h-full justify-between rounded-lg px-4 py-1 bg-gray-800 hover:bg-myViolet hover:text-gray-900 transition-colors duration-300 focus:outline-none"
+        class="flex items-center w-full h-full justify-between rounded-lg px-4 py-1 bg-gray-800 hover:bg-violet-500 hover:text-gray-900 transition-colors duration-300 focus:outline-none"
       >
         <span class="text-sm font-semibold">Country</span>
         <i class="fa-solid fa-circle-chevron-down text-xs"></i>
       </button>
       <button
         type="button"
-        class="flex items-center w-full h-full justify-between rounded-lg px-4 py-1 bg-gray-800 hover:bg-myViolet hover:text-gray-900 transition-colors duration-300 focus:outline-none"
+        class="flex items-center w-full h-full justify-between rounded-lg px-4 py-1 bg-gray-800 hover:bg-violet-500 hover:text-gray-900 transition-colors duration-300 focus:outline-none"
       >
         <span class="text-sm font-semibold">Year</span>
         <i class="fa-solid fa-circle-chevron-down text-xs"></i>
       </button>
       <button
         type="button"
-        class="flex items-center w-full h-full justify-between rounded-lg px-4 py-1 bg-gray-800 hover:bg-myViolet hover:text-gray-900 transition-colors duration-300 focus:outline-none"
+        class="flex items-center w-full h-full justify-between rounded-lg px-4 py-1 bg-gray-800 hover:bg-violet-500 hover:text-gray-900 transition-colors duration-300 focus:outline-none"
       >
         <span class="text-sm font-semibold">Rating</span>
         <i class="fa-solid fa-circle-chevron-down text-xs"></i>
       </button>
       <button
         type="button"
-        class="flex items-center w-full h-full justify-between rounded-lg px-4 py-1 bg-gray-800 hover:bg-myViolet hover:text-gray-900 transition-colors duration-300 focus:outline-none"
+        class="flex items-center w-full h-full justify-between rounded-lg px-4 py-1 bg-gray-800 hover:bg-violet-500 hover:text-gray-900 transition-colors duration-300 focus:outline-none"
       >
         <span class="text-sm font-semibold">Quality</span>
         <i class="fa-solid fa-circle-chevron-down text-xs"></i>
@@ -76,7 +76,7 @@
         @click="onSubmit()"
         :disabled="props.modelValue.trim() === ''"
         type="button"
-        class="flex-1 text-center rounded-lg px-4 py-1 bg-myViolet enabled:hover:bg-[#6754ab] transition-colors duration-300 text-gray-200 disabled:opacity-50"
+        class="flex-1 text-center rounded-lg px-4 py-1 bg-violet-500 enabled:hover:bg-violet-400 transition-colors duration-300 text-gray-900 disabled:opacity-50"
       >
         <span class="text-sm font-semibold"
           ><i class="mdi mdi-atom-variant"></i> Filter</span

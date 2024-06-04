@@ -6,7 +6,7 @@
         <div class="flex items-center px-1 gap-1">
           <img class="w-6 h-auto" src="../assets/logo.png" alt="" />
           <h1 class="text-2xl text-gray-100 font-extrabold drop-shadow-lg">
-            <span class="text-myViolet">Ryl</span>Flix
+            <span class="text-violet-500">Ryl</span>Flix
           </h1>
         </div>
       </router-link>
@@ -16,7 +16,7 @@
           <!-- Search Icon -->
           <li v-if="$route.fullPath !== '/'">
             <a
-              class="leading-none text-gray-100 cursor-pointer hover:text-myViolet transition-colors duration-300"
+              class="leading-none text-gray-100 cursor-pointer hover:text-violet-500 transition-colors duration-300"
               @click="toggleSearchBar()"
             >
               <i
@@ -28,7 +28,7 @@
           <li>
             <a
               @click="toggleSignInForm()"
-              class="text-lg md:text-xl text-gray-100 cursor-pointer hover:text-myViolet transition-colors duration-300"
+              class="text-lg md:text-xl text-gray-100 cursor-pointer hover:text-violet-500 transition-colors duration-300"
             >
               <i class="fa-solid fa-user"></i>
             </a>
@@ -43,7 +43,7 @@
           <li>
             <a
               ref="navBar"
-              class="group text-gray-100 cursor-pointer hover:text-myViolet transition-colors duration-300"
+              class="group text-gray-100 cursor-pointer hover:text-violet-500 transition-colors duration-300"
               @click="toggleNavBar($event)"
             >
               <i class="mdi mdi-menu-open text-[2.25rem] md:text-[2.5rem]"></i>
@@ -53,25 +53,25 @@
               >
                 <router-link
                   to="/"
-                  class="rounded-t-2xl px-4 py-3 hover:bg-myViolet hover:text-gray-100 transition-colors duration-500"
+                  class="rounded-t-2xl px-4 py-3 hover:bg-violet-500 hover:text-gray-100 transition-colors duration-500"
                 >
                   Home
                 </router-link>
                 <router-link
                   to="/movies"
-                  class="px-4 py-3 hover:bg-myViolet hover:text-gray-100 transition-colors duration-500"
+                  class="px-4 py-3 hover:bg-violet-500 hover:text-gray-100 transition-colors duration-500"
                 >
                   Movies
                 </router-link>
                 <router-link
                   to="/tvshows"
-                  class="px-4 py-3 hover:bg-myViolet hover:text-gray-100 transition-colors duration-500"
+                  class="px-4 py-3 hover:bg-violet-500 hover:text-gray-100 transition-colors duration-500"
                 >
                   TV Shows
                 </router-link>
                 <router-link
                   to="/about"
-                  class="rounded-b-2xl px-4 py-3 hover:bg-myViolet hover:text-gray-100 transition-colors duration-500"
+                  class="rounded-b-2xl px-4 py-3 hover:bg-violet-500 hover:text-gray-100 transition-colors duration-500"
                 >
                   About
                 </router-link>

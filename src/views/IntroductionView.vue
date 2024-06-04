@@ -15,7 +15,7 @@
             high-quality movies without any cost.
           </p>
           <router-link
-            class="block w-full rounded-lg p-2 bg-myViolet text-gray-100 text-sm text-center font-semibold mt-6 hover:bg-[#6754ab] transition-colors duration-300"
+            class="block w-full rounded-lg p-2 bg-violet-500 text-gray-900 text-sm text-center font-semibold mt-6 hover:bg-violet-400 transition-colors duration-300"
             to="/home"
           >
             Watch Free Movies & TV Shows
