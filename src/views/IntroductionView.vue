@@ -1,5 +1,7 @@
 <template>
-  <div class="w-full bg-[url('../assets/home-bg.jpg')] bg-cover bg-top">
+  <div
+    class="w-full min-h-svh bg-[url('../assets/home-bg.jpg')] bg-cover bg-top"
+  >
     <div
       class="w-full h-full bg-gradient-to-t from-gray-950 bg-[rgba(0,0,0,0.1)] mb-4"
     >

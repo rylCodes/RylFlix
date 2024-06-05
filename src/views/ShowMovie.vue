@@ -1,5 +1,5 @@
 <template>
-  <div class="w-full mb-16">
+  <div class="w-full min-h-svh mb-16">
     <div
       :key="backdropKey"
       class="relative w-full h-full aspect-video bg-contain"

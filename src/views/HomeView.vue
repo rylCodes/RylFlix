@@ -1,5 +1,7 @@
 <template>
-  <div class="flex flex-col w-full p-6 mb-10 gap-12 lg:flex-row lg:gap-4">
+  <div
+    class="flex flex-col w-full min-h-svh p-6 mb-10 gap-12 lg:flex-row lg:gap-4"
+  >
     <main class="flex-1">
       <div class="flex items-center gap-4">
         <h3 class="font-semibold text-2xl text-gray-100">FEATURED</h3>
@@ -43,6 +45,8 @@
         v-if="selectedFeaturedType === 'featuredTVShows'"
         :allTVShows="allTVShows"
       />
+
+      <SkeletonComponent v-if="isFetching" :count="12" />
 
       <!-- Trending -->
       <div class="mt-12">
@@ -88,6 +92,8 @@
           </li>
         </ul>
       </div>
+
+      <SkeletonComponent v-if="isAllTrendingFetching" :count="12" />
     </main>
 
     <!-- ASIDE: Latest -->
@@ -230,6 +236,7 @@ import { onMounted, toRef, ref } from "vue";
 // Components
 import AllMoviesComponent from "../components/AllMoviesComponent.vue";
 import AllTVShowsComponent from "../components/AllTVShowsComponent.vue";
+import SkeletonComponent from "../components/SkeletonComponent.vue";
 
 import useMovies from "../composables/movies";
 import useTVShows from "../composables/tvshows";
@@ -238,12 +245,20 @@ import { toKebabCase, toOneDecimal } from "../utils/textFormatter";
 
 const { allTVShows, topRatedTVShows, discoverTVShows, showTopRatedTVShows } =
   useTVShows();
-const { allMovies, topRatedMovies, discoverMovies, showTopRatedMovies } =
-  useMovies();
+
+const {
+  allMovies,
+  topRatedMovies,
+  isFetching,
+  discoverMovies,
+  showTopRatedMovies,
+} = useMovies();
+
 const {
   allTrending,
   upcomingMovies,
   upcomingTVShows,
+  isAllTrendingFetching,
   showAllTrending,
   showUpcomingMovies,
   showUpcomingTVShows,

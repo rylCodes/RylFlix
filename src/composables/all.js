@@ -6,8 +6,10 @@ export default function useAllTrending() {
   const upcomingMovies = ref([]);
   const upcomingTVShows = ref([]);
   const query = ref("");
+  const isAllTrendingFetching = ref(false);
 
   const showAllTrending = async (resultsCount = null, timeWindow = "day") => {
+    isAllTrendingFetching.value = true;
     try {
       const response = await axios.get(
         `https://api.themoviedb.org/3/trending/all/${timeWindow}?api_key=9ba3f19378eba6cb60a5fd7e3b960569&`
@@ -21,6 +23,8 @@ export default function useAllTrending() {
         : filteredResults;
     } catch (error) {
       console.error("Error fetching trending shows", error);
+    } finally {
+      isAllTrendingFetching.value = false;
     }
   };
 
@@ -63,6 +67,7 @@ export default function useAllTrending() {
     upcomingMovies,
     upcomingTVShows,
     query,
+    isAllTrendingFetching,
     showUpcomingMovies,
     showAllTrending,
     showUpcomingTVShows,
