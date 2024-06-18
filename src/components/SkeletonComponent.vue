@@ -7,7 +7,7 @@
     <li
       v-for="(skeleton, index) in skeletons"
       :key="index"
-      :style="{ transitionDelay: `${index * 100}ms` }"
+      :style="{ transitionDelay: `${index * 50}ms` }"
       v-html="skeleton"
       class="list-item"
     ></li>

@@ -1,7 +1,5 @@
 <template>
-  <div
-    class="flex flex-col w-full min-h-svh p-6 mb-10 gap-12 lg:flex-row lg:gap-4"
-  >
+  <div class="flex flex-col w-full p-6 mb-10 gap-12 lg:flex-row lg:gap-4">
     <main class="flex-1">
       <h3 class="font-semibold text-2xl text-gray-100">A-Z List</h3>
       <!-- Filter Search -->

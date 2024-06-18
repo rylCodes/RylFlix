@@ -87,7 +87,7 @@
         <button
           type="button"
           @click="onSubmit()"
-          class="w-full rounded-xl bg-violet-500 text-gray-900 px-1.5 py-3 text-center text-sm font-semibold hover:bg-[rgb(116,71,168)] transition-all duration-300"
+          class="w-full rounded-xl bg-violet-500 text-gray-900 px-1.5 py-3 text-center text-sm font-semibold hover:bg-violet-600 transition-all duration-300"
         >
           View All Results <i class="mdi mdi-arrow-top-right"></i>
         </button>

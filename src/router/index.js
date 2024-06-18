@@ -52,6 +52,34 @@ const routes = [
     name: "About",
     component: () => import("../views/AboutView.vue"),
   },
+  {
+    path: "/login",
+    name: "Login",
+    component: () => import("../views/LoginView.vue"),
+  },
+  {
+    path: "/:user/watchlist",
+    name: "WatchList",
+    component: () => import("../views/WatchListView.vue"),
+    props: true,
+  },
+  {
+    path: "/:user/favorite",
+    name: "Favorite",
+    component: () => import("../views/FavoriteView.vue"),
+    props: true,
+  },
+  {
+    path: "/:user/ratings",
+    name: "Ratings",
+    component: () => import("../views/RatingsView.vue"),
+    props: true,
+  },
+  {
+    path: "/:pathMatch(.*)*",
+    name: "NotFound",
+    component: () => import("../views/NotFound.vue"),
+  },
 ];
 
 const router = createRouter({

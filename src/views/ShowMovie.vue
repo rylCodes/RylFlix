@@ -1,5 +1,5 @@
 <template>
-  <div class="w-full min-h-svh mb-16">
+  <div class="w-full mb-16">
     <div
       :key="backdropKey"
       class="relative w-full h-full aspect-video bg-contain"
@@ -70,11 +70,11 @@
         </div>
 
         <!-- Skeleton Movie Details -->
-        <DetailSkeletonVue v-if="isFetching" />
+        <DetailSkeleton v-if="isFetching" />
 
         <div class="flex gap-4" v-if="!isFetching">
           <div
-            class="absolute w-full h-fit -z-10 opacity-15 aspect-[2/3] lg:static lg:w-56 lg:h-fit lg:opacity-100 bg-contain"
+            class="absolute w-full h-fit opacity-15 aspect-[2/3] lg:static lg:w-56 lg:h-fit lg:opacity-100 bg-contain"
             :style="{
               'background-image':
                 'url(https://image.tmdb.org/t/p/w45' +
@@ -309,7 +309,7 @@ import useMovies from "../composables/movies";
 
 import LoaderModalComponent from "../components/LoaderModalComponent.vue";
 import StarRatingComponent from "../components/StarRatingComponent.vue";
-import DetailSkeletonVue from "@/components/DetailSkeleton.vue";
+import DetailSkeleton from "@/components/DetailSkeleton.vue";
 
 import { formatDateToLong } from "../utils/dateFormatter";
 import { toKebabCase, toOneDecimal } from "../utils/textFormatter";
@@ -357,9 +357,8 @@ watch(
 onMounted(() => {
   showMovie(movieID.value);
   showRecommendedMovies(movieID.value);
-});
 
+  console.log(tmdbMovie);
+});
 // defineOptions({ inheritAttrs: false });
-console.log("omdb: ", omdbMovie);
-console.log("tmdb: ", tmdbMovie);
 </script>

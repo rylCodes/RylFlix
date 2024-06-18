@@ -1,5 +1,5 @@
 <template>
-  <footer class="p-4">
+  <footer ref="footerElement" class="p-4">
     <div
       class="flex flex-col gap-4 w-full border border-gray-800 px-10 py-12 rounded-2xl sm:flex-row"
     >
@@ -60,3 +60,14 @@
     </div>
   </footer>
 </template>
+
+<script setup>
+import { onMounted, ref } from "vue";
+
+const emit = defineEmits(["footerHeight"]);
+
+const footerElement = ref(null);
+onMounted(() => {
+  emit("footerHeight", footerElement.value.offsetHeight);
+});
+</script>
