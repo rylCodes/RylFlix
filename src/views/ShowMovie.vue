@@ -1,6 +1,6 @@
 <template>
   <div class="w-full mb-16">
-    <div
+    <!-- <div
       :key="backdropKey"
       class="relative w-full h-full aspect-video bg-contain"
       id="movie-container"
@@ -34,19 +34,19 @@
         src="../assets/play-button.svg"
         alt=""
       />
-      <div class="w-full h-auto aspect-video">
+    </div> -->
+          <div class="w-full h-full aspect-video" id="movie-container">
         <iframe
-          v-if="isVideoPlaying"
           class="w-full h-auto aspect-video"
           :src="
-            'https://vidsrc.to/embed/movie/' +
+            'https://v2.vidsrc.me/embed/movie/' +
             (omdbMovie.imdbID ? omdbMovie.imdbID : tmdbMovie.id)
           "
           frameborder="0"
           allowfullscreen
+          referrerpolicy="origin"
         ></iframe>
       </div>
-    </div>
     <div
       class="flex flex-col-reverse gap-8 w-full p-4 mt-6 lg:flex-row lg:gap-4"
     >
