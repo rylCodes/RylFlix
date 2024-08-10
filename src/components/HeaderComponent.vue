@@ -36,7 +36,7 @@
             <transition name="fade">
               <div
                 v-if="isUserMenuOpen"
-                class="absolute top-full right-0 px-4 py-3 z-30 flex flex-col gap-2 text-sm text-gray-400 bg-gray-800 font-medium w-64 rounded-2xl overflow-hidden sm:text-base"
+                class="absolute top-full right-0 px-4 py-3 z-[999] flex flex-col gap-2 text-sm text-gray-400 bg-gray-800 font-medium w-64 rounded-2xl overflow-hidden sm:text-base"
               >
                 <div v-if="isAuthenticated" class="flex items-center gap-1.5">
                   <div
@@ -140,7 +140,7 @@
               <transition name="fade">
                 <nav
                   v-if="isNavBarOpen"
-                  class="absolute top-full right-0 z-40 flex flex-col justify-center text-sm text-gray-400 bg-gray-800 font-medium w-64 rounded-2xl overflow-hidden sm:text-base"
+                  class="absolute top-full right-0 z-[999] flex flex-col justify-center text-sm text-gray-400 bg-gray-800 font-medium w-64 rounded-2xl overflow-hidden sm:text-base"
                 >
                   <RouterLink
                     to="/"
